@@ -60,6 +60,6 @@ Il ciclo di vita del software e il rilascio delle patch sono concepiti per garan
 ---
 
 <div align="center">
-  <p><i>L'innovazione tecnologica al servizio della sovranità del dato aziendale.</i></p>
+  <p><i>Garantire l'assoluta sovranità e riservatezza del patrimonio informativo aziendale.</i></p>
   <p>&copy; 2026 DocVault Enterprise. Tutti i diritti riservati.</p>
 </div>
