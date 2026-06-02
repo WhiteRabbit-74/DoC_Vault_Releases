@@ -15,47 +15,48 @@
 ## 🔒 Sicurezza e Sovranità del Dato (Architettura Local-First)
 
 Benvenuti nel canale di distribuzione ufficiale di **DocVault**. 
-Progettato in stretta aderenza alle normative sulla privacy e ai requisiti GDPR per il mercato aziendale italiano, **DocVault adotta un'architettura 100% Local-First**.
+In conformità con le più severe normative in materia di privacy e GDPR per le PMI italiane, **DocVault opera interamente offline ed è ad architettura Local-First**.
 
-Questa repository costituisce l'hub centrale e certificato per il rilascio degli eseguibili ufficiali e dei pacchetti di aggiornamento di sistema.
+Il codice sorgente del nucleo applicativo e le logiche di business risiedono in una repository privata e sicura. Questa repository pubblica è adibita **esclusivamente** al download degli eseguibili compilati per l'installazione e dei pacchetti OTA per l'aggiornamento.
 
-Il patrimonio informativo aziendale e i flussi documentali non transitano **mai** attraverso server esterni o infrastrutture cloud: ogni singola operazione rimane confinata e crittografata all'interno del server locale e della rete aziendale.
-
----
-
-## 🧠 Intelligenza Artificiale Locale & Semantic Search
-
-DocVault integra capacità di analisi ed estrazione dati avanzate, eseguite direttamente sull'hardware locale per garantire massima efficienza e privacy assoluta:
-* **Motore di Analisi AI Dedicato**: Classificazione dei documenti, rilevamento delle scadenze critiche e suggerimento intelligente dei metadati, senza alcuna dipendenza da API esterne.
-* **Archiviazione Strutturata e Ricerca (FTS5)**: Motore di indicizzazione ultra-veloce integrato a livello di database per query complesse e ricerche istantanee, con protezione nativa dalle iniezioni di codice.
+I vostri documenti aziendali non transitano **mai** su server esterni o nel cloud: rimangono integralmente all'interno del vostro server locale e della vostra rete LAN.
 
 ---
 
-## 🔄 Gestione Ottimizzata degli Aggiornamenti (OTA Updates)
+## 🧠 Intelligenza Artificiale Locale & Semantic Search On-Premise
 
-Il ciclo di vita del software e il rilascio delle patch sono concepiti per garantire continuità aziendale e trasparenza amministrativa:
-1. **Aggiornamenti Controllati**: La verifica delle nuove versioni avviene in modo discreto e unicamente su iniziativa dell'Amministratore di Sistema, garantendo il pieno controllo sulle policy di rete interne.
-2. **Distribuzione Sicura**: I pacchetti di aggiornamento ufficiali vengono prelevati esclusivamente da questa repository certificata, assicurando l'integrità della filiera del software.
-3. **Resilienza e Continuità**: Durante ogni operazione di aggiornamento, il sistema esegue preventivamente un'istantanea di sicurezza (snapshot) del database e delle configurazioni, garantendo la totale salvaguardia dello storico aziendale.
+DocVault integra avanzate capacità di analisi ed estrazione dati basate su IA eseguiti direttamente sul vostro hardware locale, senza costi di API cloud e con privacy garantita:
+* **Analisi e Classificazione Locale**: Motore Transformer ONNX locale che analizza il testo dei documenti estratti per suggerire categorie, titoli e date di scadenza critiche.
+* **Ricerca Semantica Offline**: Generazione locale di vettori/embeddings in memoria (modello `multilingual-e5-small`) per consentire ricerche intelligenti in base al significato dei documenti, anche in presenza di sinonimi o query in linguaggio naturale.
+* **Indicizzazione Full-Text (FTS5)**: Ricerca ultra-veloce tramite motore SQLite FTS5 integrato e sanitizzazione preventiva degli input per la massima sicurezza da SQL Injection.
+
+---
+
+## 🔄 Gestione Sicura degli Aggiornamenti (OTA Updates)
+
+Gli aggiornamenti software in DocVault sono progettati per essere sicuri, trasparenti e sotto il controllo totale degli amministratori IT:
+1. **Rilevamento su Richiesta**: Nessun processo silente in background o demone effettua chiamate esterne continue. Il controllo delle versioni viene eseguito esclusivamente quando il Super Amministratore accede alla pagina **Impostazioni di Sistema > Aggiornamenti** dell'interfaccia locale di DocVault.
+2. **Download del Pacchetto**: Se è disponibile una nuova release, il sistema scaricherà in locale l'archivio `update.zip` direttamente dalle release pubbliche di questa repository.
+3. **Backup Automatico Preventivo**: Prima di applicare qualsiasi patch, DocVault esegue una copia fisica immediata del database SQLite `docvault.db` e del file `config.json` in una directory temporanea di sicurezza.
+4. **Hot-Swap della Logica**: Lo script di aggiornamento installa le nuove dipendenze e sovrascrive esclusivamente i file logici compilati. I vostri documenti archiviati e i dati del database SQLite rimangono perfettamente intatti e protetti.
 
 ---
 
 ## 📥 Guida all'Installazione
 
 1. Accedi alla sezione **[Releases](../../releases/latest)** di questa repository.
-2. Scarica l'installer `DocVault-Setup-vX.Y.Z.exe` ottimizzato per ambienti Windows.
-3. Avvia la procedura guidata sulla macchina designata come server documentale centrale.
-4. Completa la configurazione iniziale (Setup Guidato) definendo il profilo Amministratore (Ruolo `OWNER`).
-5. La piattaforma sarà immediatamente operativa e accessibile a tutto il personale autorizzato direttamente tramite la rete aziendale locale.
+2. Scarica il file eseguibile `DocVault-Setup-vX.Y.Z.exe` per Windows.
+3. Avvia l'installer sulla macchina Windows designata come server documentale dell'organizzazione (requisiti consigliati: min. 8GB RAM).
+4. Al termine del setup guidato di onboarding, crea il primo account aziendale con ruolo `OWNER`.
+5. La piattaforma sarà accessibile a tutti i dipendenti all'interno della rete aziendale LAN tramite l'indirizzo IP locale della macchina server (es. `http://192.168.1.100:3000`).
 
 ---
 
-## 🛡️ Standard di Eccellenza IT
-
-* **Traffico Esterno Ridotto al Minimo**: L'unica interazione con l'esterno è strettamente limitata alla verifica delle firme e dei pacchetti di aggiornamento tramite i server sicuri di GitHub.
-* **Isolamento Architetturale Multi-Tenant**: I dati sono segregati e strutturati per impedire qualsiasi contaminazione logica tra dipartimenti o organizzazioni distinte.
-* **Clearance di Livello Enterprise**: Gestione granulare degli accessi basata su 5 livelli di riservatezza crittografici, applicati dinamicamente a livello di core logic.
-* **Protezione Credenziali**: Tutte le chiavi di accesso e le password sono protette da hashing Bcrypt ad alta entropia.
+## 🛡️ Standard di Sicurezza IT
+* **Connessioni Esterne**: L'unica connessione internet richiesta (porta 443, protocollo HTTPS) è quella effettuata dal server locale verso l'endpoint `api.github.com` per verificare la presenza di release in questo archivio.
+* **Isolamento Organizzazioni**: Architettura predisposta per l'isolamento multi-tenant dei dati tramite controlli logici rigorosi (`organizationId`).
+* **Controllo Clearance**: Accesso ai documenti protetto da clearance granulare a 5 livelli di riservatezza, verificato a livello server su ogni singola richiesta.
+* **Cifratura**: Tutte le password degli utenti sono crittografate localmente mediante algoritmo Bcrypt con 12 round di salatura.
 
 ---
 
