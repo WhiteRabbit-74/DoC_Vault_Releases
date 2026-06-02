@@ -1,61 +1,66 @@
 <div align="center">
-  <img src="https://via.placeholder.com/150/4f46e5/ffffff?text=DocVault+Logo" alt="DocVault Logo" width="120" />
-
-  # DocVault™ – Release Ufficiali & Aggiornamenti
+  <h1>DocVault™ – Release Ufficiali & Aggiornamenti</h1>
   
-  **Document Management System Enterprise con Intelligenza Artificiale On-Premise**
+  <p><b>Document Management System Enterprise Local-First con Intelligenza Artificiale On-Premise</b></p>
   
-  [![Release](https://img.shields.io/github/v/release/WhiteRabbit-74/DoC_Vault_Releases?style=for-the-badge&color=4f46e5)](https://github.com/WhiteRabbit-74/DoC_Vault_Releases/releases)
-  [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2B-blue?style=for-the-badge&logo=windows)](https://github.com/WhiteRabbit-74/DoC_Vault_Releases/releases)
-  [![Security](https://img.shields.io/badge/Security-Local--First-success?style=for-the-badge)](#)
+  <p>
+    🛡️ <b>Sicurezza:</b> Local-First &amp; GDPR Compliant | 
+    💻 <b>Piattaforma:</b> Windows 10+ (min. 8GB RAM) | 
+    🚀 <b>Rilascio:</b> OTA &amp; Offline Installer
+  </p>
 </div>
 
 ---
 
-## 🔒 Sicurezza e Trasparenza (Architettura Local-First)
+## 🔒 Sicurezza e Sovranità del Dato (Architettura Local-First)
 
 Benvenuti nel canale di distribuzione ufficiale di **DocVault**. 
-In conformità con i più rigidi standard di sicurezza aziendale (GDPR e privacy del dato), **DocVault è un software 100% Local-First**.
+In conformità con le più severe normative in materia di privacy e GDPR per le PMI italiane, **DocVault opera interamente offline ed è ad architettura Local-First**.
 
-Ciò significa che il codice sorgente del motore AI e le logiche crittografiche risiedono in una repository privata e sigillata, inaccessibile dall'esterno. Questo spazio pubblico è dedicato **esclusivamente** alla distribuzione trasparente degli eseguibili finali (OTA Updates) e all'audit delle versioni.
+Il codice sorgente del nucleo applicativo e le logiche di business risiedono in una repository privata e sicura. Questa repository pubblica è adibita **esclusivamente** al download degli eseguibili compilati per l'installazione e dei pacchetti OTA per l'aggiornamento.
 
-I vostri documenti non lasceranno **mai** il perimetro del vostro ufficio.
-
----
-
-## 🚀 Come funzionano gli Aggiornamenti (OTA)
-
-Non è necessario scaricare manualmente i file da questa pagina. 
-L'applicazione DocVault installata sui vostri server aziendali è dotata di un **motore di Auto-Update silente**.
-
-1. Il demone interno interroga questa repository una volta all'ora.
-2. Quando viene rilevata una nuova Release Ufficiale, il pacchetto di aggiornamento viene scaricato in background.
-3. Un pop-up discreto vi avviserà all'interno del software.
-4. Al successivo riavvio, DocVault applicherà la patch mantenendo **perfettamente intatti** il vostro database SQLite e tutti i documenti archiviati.
+I vostri documenti aziendali non transitano **mai** su server esterni o nel cloud: rimangono integralmente all'interno del vostro server locale e della vostra rete LAN.
 
 ---
 
-## 📥 Installazione Manuale (Primo Avvio)
+## 🧠 Intelligenza Artificiale Locale & Semantic Search On-Premise
 
-Se siete l'Amministratore di Sistema incaricato della prima installazione:
-
-1. Visitate la sezione **[Releases](../../releases/latest)** sulla destra.
-2. Scaricate l'ultimo file eseguibile `DocVault-Setup-vX.Y.Z.exe`.
-3. Eseguitelo sulla macchina Windows designata come Server Documentale (Richiesti min. 8GB RAM).
-4. Terminato il setup, DocVault si aprirà e vi guiderà nella creazione del primo account `OWNER` dell'azienda.
-5. Da quel momento, tutti i dipendenti della vostra rete LAN potranno accedere digitando l'indirizzo IP del server nel loro browser.
+DocVault integra avanzate capacità di analisi ed estrazione dati basate su IA eseguiti direttamente sul vostro hardware locale, senza costi di API cloud e con privacy garantita:
+* **Analisi e Classificazione Locale**: Motore Transformer ONNX locale che analizza il testo dei documenti estratti per suggerire categorie, titoli e date di scadenza critiche.
+* **Ricerca Semantica Offline**: Generazione locale di vettori/embeddings in memoria (modello `multilingual-e5-small`) per consentire ricerche intelligenti in base al significato dei documenti, anche in presenza di sinonimi o query in linguaggio naturale.
+* **Indicizzazione Full-Text (FTS5)**: Ricerca ultra-veloce tramite motore SQLite FTS5 integrato e sanitizzazione preventiva degli input per la massima sicurezza da SQL Injection.
 
 ---
 
-## 🛡️ Note di Sicurezza per gli Amministratori IT
+## 🔄 Gestione Sicura degli Aggiornamenti (OTA Updates)
 
-- **Nessuna dipendenza cloud:** DocVault utilizza un motore Transformer AI ottimizzato (ONNX) che gira localmente sulla CPU/GPU del server.
-- **Isolamento Rete:** L'applicazione non richiede l'apertura di porte sul firewall aziendale verso l'esterno, se non per interrogare `api.github.com` (solo protocollo HTTPS, porta 443) al fine di verificare le versioni in questa repository.
-- **Cifratura Password:** Tutte le password degli utenti sono crittografate tramite algoritmo **Bcrypt** a 12 round (Salted) e archiviate nel file `docvault.db` locale.
+Gli aggiornamenti software in DocVault sono progettati per essere sicuri, trasparenti e sotto il controllo totale degli amministratori IT:
+1. **Rilevamento su Richiesta**: Nessun processo silente in background o demone effettua chiamate esterne continue. Il controllo delle versioni viene eseguito esclusivamente quando il Super Amministratore accede alla pagina **Impostazioni di Sistema > Aggiornamenti** dell'interfaccia locale di DocVault.
+2. **Download del Pacchetto**: Se è disponibile una nuova release, il sistema scaricherà in locale l'archivio `update.zip` direttamente dalle release pubbliche di questa repository.
+3. **Backup Automatico Preventivo**: Prima di applicare qualsiasi patch, DocVault esegue una copia fisica immediata del database SQLite `docvault.db` e del file `config.json` in una directory temporanea di sicurezza.
+4. **Hot-Swap della Logica**: Lo script di aggiornamento installa le nuove dipendenze e sovrascrive esclusivamente i file logici compilati. I vostri documenti archiviati e i dati del database SQLite rimangono perfettamente intatti e protetti.
+
+---
+
+## 📥 Guida all'Installazione
+
+1. Accedi alla sezione **[Releases](../../releases/latest)** di questa repository.
+2. Scarica il file eseguibile `DocVault-Setup-vX.Y.Z.exe` per Windows.
+3. Avvia l'installer sulla macchina Windows designata come server documentale dell'organizzazione (requisiti consigliati: min. 8GB RAM).
+4. Al termine del setup guidato di onboarding, crea il primo account aziendale con ruolo `OWNER`.
+5. La piattaforma sarà accessibile a tutti i dipendenti all'interno della rete aziendale LAN tramite l'indirizzo IP locale della macchina server (es. `http://192.168.1.100:3000`).
+
+---
+
+## 🛡️ Standard di Sicurezza IT
+* **Connessioni Esterne**: L'unica connessione internet richiesta (porta 443, protocollo HTTPS) è quella effettuata dal server locale verso l'endpoint `api.github.com` per verificare la presenza di release in questo archivio.
+* **Isolamento Organizzazioni**: Architettura predisposta per l'isolamento multi-tenant dei dati tramite controlli logici rigorosi (`organizationId`).
+* **Controllo Clearance**: Accesso ai documenti protetto da clearance granulare a 5 livelli di riservatezza, verificato a livello server su ogni singola richiesta.
+* **Cifratura**: Tutte le password degli utenti sono crittografate localmente mediante algoritmo Bcrypt con 12 round di salatura.
 
 ---
 
 <div align="center">
-  <p><i>Sviluppato con passione per garantire l'assoluta sovranità sui dati aziendali.</i></p>
+  <p><i>Garantire l'assoluta sovranità e riservatezza del patrimonio informativo aziendale.</i></p>
   <p>&copy; 2026 DocVault Enterprise. Tutti i diritti riservati.</p>
 </div>
